@@ -61,6 +61,7 @@ class AESFileEncryptor(object):
     def __init__(self,key):
         global arp
         self.urandom = False
+        self.iv = "\x00"*16
         self.Key = key
         if(not key):
             if(arp.hexfile):
@@ -123,6 +124,7 @@ class AESFileEncryptor(object):
                 print "Failed Decrypting on %s probably key error%s\r\n"%("%s"%Path[:1+(-len(".eca"))]," "*100),
             else:
                 print "Decrypted %s to %s%s\r\n"%(Path,"%s"%Path[:1+(-len(".eca"))]," "*100),
+
     def SaveKey(self,fname):
         with open("%s.ecakey"%fname,"wb") as fp:
             fp.write(bytearraytohex("%s%s"%(self.Key,self.iv)))
