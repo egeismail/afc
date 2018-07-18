@@ -66,7 +66,7 @@ class AESFileEncryptor(object):
             if(arp.hexfile):
                 try:
                     self.LoadKey(arp.hexfile)
-                except KeyboardInterrupt:
+                except:
                     self.Key = os.urandom(32)
                     self.iv = "\x00"*16
                     self.urandom = True
